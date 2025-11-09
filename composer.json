@@ -3,23 +3,22 @@
     "description": "Generate vCard files for quick contact import.",
     "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Bright\\VCard\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Saeed",
             "email": "appsaeed7@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^8.1"
     },
     "require-dev": {
         "pestphp/pest": "4.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bright\\VCard\\": "src/"
+        }
     },
     "config": {
         "allow-plugins": {
@@ -31,5 +30,7 @@
         "test": [
             "@test:unit"
         ]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
