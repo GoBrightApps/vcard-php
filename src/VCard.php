@@ -19,7 +19,7 @@ class VCard extends VCardGenerator
     /**
      * Create a new vCard form model
      */
-    public static function model($info): static
+    public static function create($info): static
     {
         return (new self)
             ->addName($info->last_name, $info->first_name)
