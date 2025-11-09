@@ -38,29 +38,6 @@ $file = $vcard->getFilename() . '.vcf';
 $vcard->save(); // Saves to disk
 ```
 
-### Build from a model (object or DTO)
-
-```php
-$info = (object) [
-    'name' => 'Jane Doe',
-    'first_name' => 'Jane',
-    'last_name' => 'Doe',
-    'email' => 'jane@example.com',
-    'phone' => '555-6789',
-    'job_title' => 'Designer',
-    'big_group' => 'Creative',
-    'city' => 'Berlin',
-    'company' => 'Bright',
-    'linkedin' => 'https://linkedin.com/in/janedoe',
-    'expertise' => 'UX/UI',
-    'interests' => 'Art, Photography',
-    'picture' => null,
-];
-
-$vcard = VCard::model($info);
-$vcard->save();
-```
-
 ## File Output
 
 By default, `.vcf` files are saved in the current working directory.  
