@@ -1,44 +1,32 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+    push:
+        branches:
+            - develop
+            - main
+    pull_request:
+        branches:
+            - develop
+            - main
 
 jobs:
     ci:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            fail-fast: true
-            matrix:
-                os: [ubuntu-latest]
-                php: [8.1, 8.2, 8.3, 8.4]
-                dependency-version: [prefer-lowest, prefer-stable]
+        runs-on: ubuntu-latest
 
-        name: Tests P${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
         steps:
             - name: Checkout
-              uses: actions/checkout@v5
-
-            - name: Cache Composer dependencies
-              uses: actions/cache@v4
-              with:
-                  path: ~/.composer/cache/files
-                  key: composer-${{ runner.os }}-${{ matrix.php }}-${{ hashFiles('composer.json') }}
+              uses: actions/checkout@v4
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: ${{ matrix.php }}
-                  extensions: dom, mbstring, zip
-                  coverage: none
+                  php-version: 8.3
+                  tools: composer:v2
+                  coverage: xdebug
 
-            # Install dependencies for prefer-lowest
-            - name: Install dependencies (prefer-lowest)
-              if: matrix.dependency-version == 'prefer-lowest'
-              run: composer update --prefer-lowest --no-interaction --prefer-dist --no-progress
-
-            # Install dependencies for prefer-stable
-            - name: Install dependencies (prefer-stable)
-              if: matrix.dependency-version == 'prefer-stable'
-              run: composer install --no-interaction --prefer-dist --no-progress
+            - name: Install Dependencies
+              run: composer install --no-interaction --prefer-dist
 
             - name: Run Tests
               run: vendor/bin/pest
