@@ -29,4 +29,4 @@ jobs:
               run: composer install --no-interaction --prefer-dist
 
             - name: Run Tests
-              run: vendor/bin/pest
+              run: composer test
