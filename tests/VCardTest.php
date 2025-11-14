@@ -155,7 +155,7 @@ it('builds a vCard correctly from a model object', function () {
         'picture' => null,
     ];
 
-    $vcard = VCard::model($info);
+    $vcard = VCard::create($info);
     $output = $vcard->buildVCard();
 
     expect($output)

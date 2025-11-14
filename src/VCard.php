@@ -18,6 +18,8 @@ class VCard extends VCardGenerator
 
     /**
      * Create a new vCard form model
+     * 
+     * @param mixed $info
      */
     public static function create($info): static
     {
@@ -30,16 +32,12 @@ class VCard extends VCardGenerator
             ->when($info->phone, fn($o, $v): VCard => $o->addPhoneNumber($v, 'WORK'))
             ->when($info->company, fn($o, string $v): VCard => $o->addCompany($v))
             ->when($info->linkedin, fn($o, $v): VCard => $o->addURL($v, 'LinkedIn'))
+            ->when($info->picture, fn($o, $v) => $o->addPhoto((string) $v))
             ->addNote(implode("\n", array_filter([
                 "BIG: {$info->big_group} | ",
                 $info->expertise ? "Work & Expertise: {$info->expertise} | " : null,
                 $info->interests ? "Interests & Hobbies: {$info->interests}" : null,
             ])))
-            ->when($info->picture, function ($object, $value): void {
-                // if (Storage::disk('public')->exists($value)) {
-                //     $object->addPhoto(Storage::disk('public')->path($value));
-                // }
-            })
             ->addFilename($info->name);
     }
 
