@@ -13,7 +13,7 @@ Includes convenient helpers for building vCards from models or plain data arrays
 Install via Composer:
 
 ```bash
-composer require bright/vcard
+composer require bright/vcard-php
 ```
 
 ## Quick Usage
