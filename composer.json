@@ -1,5 +1,5 @@
 {
-    "name": "bright/vcard",
+    "name": "bright/vcard-php",
     "description": "Generate vCard files for quick contact import.",
     "type": "library",
     "license": "MIT",
